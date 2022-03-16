@@ -1,0 +1,15 @@
+from statistics import mode
+
+def evaluation(object, name):
+    outliers = []
+    non_outliers = []
+    for point in object:
+        if point == 0:
+            outliers.append(point)
+        else:
+            non_outliers.append(point)
+
+    most_freq = mode(non_outliers)
+    amount = object.count(most_freq)
+    percentage = amount / len(non_outliers) * 100
+    print(name, "outliers = ", len(outliers), "most frequent = ", most_freq, "percentage correct = ", percentage, "\n")
