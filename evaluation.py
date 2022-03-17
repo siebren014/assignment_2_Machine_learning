@@ -1,5 +1,6 @@
 from statistics import mode
 
+##this is the one i copied from previous assignment, probably not yet correct.
 def evaluation(object, name):
     outliers = []
     non_outliers = []
