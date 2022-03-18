@@ -6,7 +6,8 @@ import random
 class point_type:
     def __init__(self, point):
         self.point = (point[0], point[1], point[2], point[3], point[4], point[5])
-        self.cluster = 0 #1 for training, 2 for test
+        self.set = 0 #1 for training, 2 for test
+        self.cluster = 0 #to hold cluster value of the point object.
         self.original_index = 0 #hold original index for points to later link back to the actual point object.
 
 
@@ -83,5 +84,11 @@ def randomlysplit(object_points):
         original_index = object_points.index(point)
         point = point_type(point)
         point.original_index = original_index
-        if
+        if point in training_set:
+            point.set = 1
+        if point not in training_set:
+            point.set = 2
+
+    return object_points
+
 
