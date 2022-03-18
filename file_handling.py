@@ -94,4 +94,4 @@ def randomlysplit(object_points):
         if point not in training_set:
             point.set = 2
 
-    return object_points
+    return object_points, training_set, test_set
