@@ -83,15 +83,25 @@ def from_object2point(object_size, cluster_output):
 
 #function to randomly split the objects in training and testing set.
 def randomlysplit(object_points):
+    #make a set out of the objects, seperate them in a test and training set
     s = set(object_points)
     training_set = set(random.sample(s, (round(len(object_points) * 0.6))))
+
+    #list for training and test objects
+    training_list = []
+    test_list = []
+
+    #assign values to point_type accordingly
     for point in object_points:
         original_index = object_points.index(point)
         point = point_type(point)
         point.original_index = original_index
         if point in training_set:
             point.set = 1
+            training_list.append(point)
         if point not in training_set:
             point.set = 2
+            test_list.append(point)
 
-    return object_points, training_set, test_set
+
+    return object_points, training_list, test_list

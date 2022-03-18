@@ -61,11 +61,11 @@ for object in points_per_object:
 
 ##object values for each object
 object_points = np.array(object_values).astype(np.float64)
-norm_object_points = np.array(normalized_object_values).astype(np.float64)
+n_object_points = np.array(normalized_object_values).astype(np.float64)
 
 ## randomly split the points in training and test set.
-seperated_object_points = fh.randomlysplit(object_points)
-seperated_norm_object_points = fh.randomlysplit(norm_object_points)
+categorized_object_points, training_list, test_list = fh.randomlysplit(object_points)
+categorized_n_object_points, n_training_list, n_test_list = fh.randomlysplit(n_object_points)
 
 ## this is where the clustering has to be ran from
 svm_cluster_output = skl.svm()
