@@ -63,6 +63,10 @@ for object in points_per_object:
 object_points = np.array(object_values).astype(np.float64)
 norm_object_points = np.array(normalized_object_values).astype(np.float64)
 
+## randomly split the points in training and test set.
+seperated_object_points = fh.randomlysplit(object_points)
+seperated_norm_object_points = fh.randomlysplit(norm_object_points)
+
 ## this is where the clustering has to be ran from
 svm_cluster_output = skl.svm()
 rf_cluster_output = skl.ensemble.RandomForestClassifier()
