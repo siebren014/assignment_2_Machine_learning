@@ -6,9 +6,11 @@
 
 import features as f
 import file_handling as fh
+import evaluation as eval
 import os
 import sklearn as skl
 import numpy as np
+
 
 ##read the input file
 all_x, all_y, all_z, all_point_list, points_per_object = fh.read()
@@ -67,9 +69,17 @@ n_object_points = np.array(normalized_object_values).astype(np.float64)
 categorized_object_points, training_list, test_list = fh.randomlysplit(object_points)
 categorized_n_object_points, n_training_list, n_test_list = fh.randomlysplit(n_object_points)
 
-## this is where the clustering has to be ran from
+## this is where the classification has to be ran from
 svm_cluster_output = skl.svm()
 rf_cluster_output = skl.ensemble.RandomForestClassifier()
+
+##evaluate the classification
+eval.overall_accuracy(svm_cluster_output)
+eval.mean_per_class_accuracy(svm_cluster_output)
+eval.confusion_matrix(svm_cluster_output)
+eval.overall_accuracy(rf_cluster_output)
+eval.mean_per_class_accuracy(rf_cluster_output)
+eval.confusion_matrix(rf_cluster_output)
 
 ##to go from the objects back to the points.
 svm_point_output = fh.from_object2point(object_size, svm_cluster_output)
