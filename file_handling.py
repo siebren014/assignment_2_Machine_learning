@@ -3,6 +3,7 @@ import numpy as np
 import os
 import random
 
+#type to hold info of our objects
 class point_type:
     def __init__(self, point):
         self.point = (point[0], point[1], point[2], point[3], point[4], point[5])
@@ -11,8 +12,8 @@ class point_type:
         self.original_index = 0 #hold original index for points to later link back to the actual point object.
 
 
+# write to file
 def file_write(all_x, all_y, all_z, clusters, output_file):
-    # write to file
     # Create a new header
     header = laspy.LasHeader(point_format=3, version="1.2")
     header.add_extra_dim(laspy.ExtraBytesParams(name="random", type=np.float32))
@@ -37,6 +38,7 @@ def file_write(all_x, all_y, all_z, clusters, output_file):
     # write the output to the file
     las.write(output_file)
 
+#function to read the file and give the info needed
 def read():
     input_folder = (r"C:scene_objects/scene_objects/data")
     all_point_list = []
@@ -58,6 +60,7 @@ def read():
             points_per_object.append(file_points)
     return all_x, all_y, all_z, all_point_list, points_per_object
 
+#function to normalize features
 def normalize(features):
     max = features[0]
     for i in features:
@@ -68,6 +71,7 @@ def normalize(features):
         j[0] = j[0] / max
     return features
 
+#function to go back from objects to points, for the output.
 def from_object2point(object_size, cluster_output):
     # list to hold objects * cluster value, to make the output ponitcloud
     db_cluster_value = []
@@ -77,6 +81,7 @@ def from_object2point(object_size, cluster_output):
             db_cluster_value.append(cluster_output[object_size.index(multiplier)])
     return db_cluster_value
 
+#function to randomly split the objects in training and testing set.
 def randomlysplit(object_points):
     s = set(object_points)
     training_set = set(random.sample(s, (round(len(object_points) * 0.6))))
@@ -90,5 +95,3 @@ def randomlysplit(object_points):
             point.set = 2
 
     return object_points
-
-

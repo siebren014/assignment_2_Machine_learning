@@ -1,6 +1,7 @@
 from scipy.spatial import ConvexHull
 from statistics import median
 
+#function to compute height difference of object
 def compute_height_difference(point_list):
     z_max, z_min = float(point_list[0][2]), float(point_list[0][2])
     for point in point_list:

@@ -14,3 +14,13 @@ def evaluation(object, name):
     amount = object.count(most_freq)
     percentage = amount / len(non_outliers) * 100
     print(name, "outliers = ", len(outliers), "most frequent = ", most_freq, "percentage correct = ", percentage, "\n")
+
+
+def overall_accuracy():
+    return 0
+
+def mean_per_class_accuracy():
+    return 0
+
+def confusion_matric():
+    return 0
