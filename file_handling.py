@@ -10,6 +10,7 @@ class point_type:
         self.set = 0 #1 for training, 2 for test
         self.cluster = 0 #to hold cluster value of the point object.
         self.original_index = 0 #hold original index for points to later link back to the actual point object.
+        self.original_value = '' #car, buidling etc.
 
 
 # write to file
@@ -90,7 +91,7 @@ def randomlysplit(object_points):
     #list for training and test objects
     training_list = []
     test_list = []
-
+    i = 0
     #assign values to point_type accordingly
     for point in object_points:
         original_index = object_points.index(point)
@@ -102,6 +103,16 @@ def randomlysplit(object_points):
         if point not in training_set:
             point.set = 2
             test_list.append(point)
-
+        if i < 100:
+            point.original_value = 'building'
+        elif 99 < i < 200:
+            point.original_value = 'car'
+        elif 199 < i < 300:
+            point.original_value = 'fence'
+        elif 299 < i < 400:
+            point.original_value = 'pole'
+        elif 399 < i < 500:
+            point.original_value = 'tree'
+        i += 1
 
     return object_points, training_list, test_list
