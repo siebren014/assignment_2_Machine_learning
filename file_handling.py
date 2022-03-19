@@ -61,6 +61,20 @@ def read():
             points_per_object.append(file_points)
     return all_x, all_y, all_z, all_point_list, points_per_object
 
+
+# new function to normalize features
+def object_normalized(features):
+    max = features[0]
+    for i in range(len(max)):
+        for j in features:
+            if j[i] > max:
+                max[i] = j[i]
+
+    for i in range(len(max)):
+        for j in features:
+            j[i] = j[i] / max[i]
+    return features
+
 #function to normalize features
 def normalize(features):
     max = features[0]
@@ -114,5 +128,4 @@ def randomlysplit(object_points):
         elif 399 < i < 500:
             point.original_value = 'tree'
         i += 1
-
     return object_points, training_list, test_list
