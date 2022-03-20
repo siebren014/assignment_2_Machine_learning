@@ -105,6 +105,8 @@ if __name__ == '__main__':
     Confusion_matrix_RF = confusion_matrix(y_test, y_pred_RF)
     print("confusion matrix of Random Forest: ")
     print(Confusion_matrix_RF)
+    print("feature importances: ")
+    print(clf_RF.feature_importances_)
     print()
 
     # -------------------------------------------------------------------
