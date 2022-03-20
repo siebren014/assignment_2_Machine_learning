@@ -1,8 +1,9 @@
+#Siebren Meines 4880412
+#Fengyan
+#Yitong
+
 import features as f
 import file_handling as fh
-import evaluation as eval
-import os
-import sklearn as skl
 from sklearn import svm
 from sklearn.ensemble import RandomForestClassifier as RF
 import numpy as np
