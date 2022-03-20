@@ -45,7 +45,6 @@ if __name__ == '__main__':
     normalized_object_values = fh.object_normalized(object_values)
     # object values for each object
     object_points = np.array(object_values).astype(np.float64)
-    # n_object_points = np.array(normalized_object_values).astype(np.float64)
 
     # split the data set into two data set and the label set:
     training_set, label, testing_set, help_objects = fh.randomly_split(normalized_object_values)
