@@ -60,7 +60,8 @@ def confusion_matrix(pointlist):
     for point in pointlist:
         expected.append(point.original_value)
         actual.append(point.cluster)
-
     confusion_matrix = cm(expected, actual)
     print(confusion_matrix)
     #do something with the confusion matrix print or whatever
+    # website https://scikit-learn.org/stable/modules/generated/sklearn.metrics.ConfusionMatrixDisplay.html
+
