@@ -10,7 +10,7 @@ class point_type:
         self.set = 0 #1 for training, 2 for test
         self.cluster = 0 #to hold cluster value of the point object.
         self.original_index = 0 #hold original index for points to later link back to the actual point object.
-        self.original_value = '' #car, buidling etc.
+        self.original_value = 0 #building =1 , car =2 , fence = 3, pole =4, tree = 5
 
 
 # write to file
@@ -75,16 +75,6 @@ def object_normalized(features):
             j[i] = j[i] / max[i]
     return features
 
-#function to normalize features
-def normalize(features):
-    max = features[0]
-    for i in features:
-        if i[0] > max:
-            max = i[0]
-
-    for j in features:
-        j[0] = j[0] / max
-    return features
 
 #function to go back from objects to points, for the output.
 def from_object2point(object_size, cluster_output):
@@ -96,52 +86,20 @@ def from_object2point(object_size, cluster_output):
             db_cluster_value.append(cluster_output[object_size.index(multiplier)])
     return db_cluster_value
 
-#function to randomly split the objects in training and testing set.
-def randomlysplit(object_points):
-    #make a set out of the objects, seperate them in a test and training set
-    s = set(object_points)
-    training_set = set(random.sample(s, (round(len(object_points) * 0.6))))
-
-    #list for training and test objects
-    training_list = []
-    test_list = []
-    i = 0
-    #assign values to point_type accordingly
-    for point in object_points:
-        original_index = object_points.index(point)
-        point = point_type(point)
-        point.original_index = original_index
-        if point in training_set:
-            point.set = 1
-            training_list.append(point)
-        if point not in training_set:
-            point.set = 2
-            test_list.append(point)
-        if i < 100:
-            point.original_value = 'building'
-        elif 99 < i < 200:
-            point.original_value = 'car'
-        elif 199 < i < 300:
-            point.original_value = 'fence'
-        elif 299 < i < 400:
-            point.original_value = 'pole'
-        elif 399 < i < 500:
-            point.original_value = 'tree'
-        i += 1
-    return object_points, training_list, test_list
-
 
 def ground_truth_label(point, original_index):
     if 0 <= original_index <= 99:
-        point.original_index = 0
+        point.original_value = 1
     elif 100 <= original_index <= 199:
-        point.original_index = 1
+        point.original_value = 2
     elif 200 <= original_index <= 299:
-        point.original_index = 2
+        point.original_value = 3
     elif 300 <= original_index <= 399:
-        point.original_index = 3
+        point.original_value = 4
     elif 400 <= original_index <= 499:
-        point.original_index = 4
+        point.original_value = 5
+
+    return point.original_value
 
 
 def randomly_split(object_points):
@@ -162,12 +120,14 @@ def randomly_split(object_points):
 
         if original_index in training_set:
             point.cluster = 1
-            training_list.append(point)
+            training_list.append(point.point)
+            truth_label = ground_truth_label(point, original_index)
+            label.append(truth_label)
+
         else:
             point.cluster = 2
-            test_list.append(point)
+            test_list.append(point.point)
 
-        ground_truth_label(point, original_index)
-        label.append(point.original_index)
-        
-    return training_list, label, test_list
+        # ground_truth_label(point, original_index)
+
+    return training_list, label, test_list, object_points

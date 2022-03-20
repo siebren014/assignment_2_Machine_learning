@@ -3,6 +3,8 @@ import file_handling as fh
 import evaluation as eval
 import os
 import sklearn as skl
+from sklearn import svm
+from sklearn.ensemble import RandomForestClassifier as RF
 import numpy as np
 
 if __name__ == '__main__':
@@ -46,17 +48,23 @@ if __name__ == '__main__':
     # n_object_points = np.array(normalized_object_values).astype(np.float64)
 
     # split the data set into two data set and the label set:
-    training_set, label, testing_set = fh.randomly_split(normalized_object_values)
+    training_set, label, testing_set, help_objects = fh.randomly_split(normalized_object_values)
 
     training_set = np.array(training_set).astype(np.float64)
     label = np.array(label).astype(np.float64)
     testing_set = np.array(testing_set).astype(np.float64)
 
     # random forest training and classifying
-    clf = skl.ensemble.RandomForestClassifier(random_state=0)
+    clf = RF(random_state=0)
     clf.fit(training_set, label)
-    clf.predict(testing_set)
-    print(clf.predict(testing_set))
+    rf_predict = clf.predict(testing_set)
+    print(rf_predict)
+
+    #SCM training and classifying
+    support_vm = svm.SVC(kernel='linear')  # Linear Kernel
+    support_vm.fit(training_set, label)
+    svm_predict = support_vm.predict(testing_set)
+    print(svm_predict)
 
     # construct later
     # ##evaluate the classification
