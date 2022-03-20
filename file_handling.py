@@ -41,7 +41,11 @@ def file_write(all_x, all_y, all_z, clusters, output_file):
 
 #function to read the file and give the info needed
 def read():
-    input_folder = (r"C:scene_objects/scene_objects/data")
+    #input_folder = (r"C:scene_objects/scene_objects/data")
+    input_folder = os.getcwd() + r"\scene_objects\scene_objects\data"
+    print("activate data folder: ")
+    print(input_folder)
+
     all_point_list = []
     points_per_object = []
     all_x = []

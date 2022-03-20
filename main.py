@@ -60,7 +60,7 @@ if __name__ == '__main__':
     rf_predict = clf.predict(testing_set)
     print(rf_predict)
 
-    #SCM training and classifying
+    #SVM training and classifying
     support_vm = svm.SVC(kernel='linear')  # Linear Kernel
     support_vm.fit(training_set, label)
     svm_predict = support_vm.predict(testing_set)
