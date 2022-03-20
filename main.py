@@ -4,10 +4,13 @@
 
 import features as f # design features
 import file_handling as fh # read and write files
+import numpy as np # to help store the objects
+
 from sklearn import svm # svm classification
 from sklearn.ensemble import RandomForestClassifier as RF # random forest classifications
 from sklearn.model_selection import train_test_split # train and test dataset 
-import numpy as np # to help store the objects
+from sklearn.metrics import confusion_matrix # confusion matrix
+
 
 if __name__ == '__main__':
     # read the input file
@@ -69,18 +72,41 @@ if __name__ == '__main__':
     
     # SVM
     print("svm classification")
-    clf = svm.SVC(C=0.1, kernel='linear', decision_function_shape='ovr')
-    clf.fit(X_train, y_train)
+    clf_svm = svm.SVC(C=0.1, kernel='linear', decision_function_shape='ovr')
+    clf_svm.fit(X_train, y_train.ravel())
 
     print("statistics: ")
-    print("Training accuracy:"+str(clf.score(X_train,y_train)))
-    print("Test accuracy:"+str(clf.score(X_test,y_test)))
+    print("Training accuracy:"+str(clf_svm.score(X_train,y_train)))
+    print("Test accuracy:"+str(clf_svm.score(X_test,y_test)))
 
-    pred_label = clf.predict(X_test)
+    # get predicted label
+    y_pred_svm = clf_svm.predict(X_test)
+
+    # get confusion matrix
+    Confusion_matrix_svm = confusion_matrix(y_test, y_pred_svm)
+    print("confusion matrix of svm: ")
+    print(Confusion_matrix_svm)
     print()
 
-    # Random Forest
+
+    # Random Forest -- need to adjust the parameters
     print("Random Forest classification")
+    clf_RF = RF(n_estimators=100,n_jobs=2) # overfitting
+    clf_RF.fit(X_train, y_train.ravel())
+
+    print("statistics: ")
+    print("Training accuracy:"+str(clf_RF.score(X_train,y_train)))
+    print("Test accuracy:"+str(clf_RF.score(X_test,y_test)))
+
+    # get predicted label
+    y_pred_RF = clf_RF.predict(X_test)
+
+    # get confusion matrix
+    Confusion_matrix_RF = confusion_matrix(y_test, y_pred_RF)
+    print("confusion matrix of Random Forest: ")
+    print(Confusion_matrix_RF)
+    print()
+
     # -------------------------------------------------------------------
 
     
