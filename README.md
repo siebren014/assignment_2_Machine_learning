@@ -1,2 +1,2 @@
 # assignment_2_Machine_learning
-Machine learning environment for Fengyan, Yitong &amp; Siebren
+Machine learning environment for Siebren, Yitong & Fengyan;
