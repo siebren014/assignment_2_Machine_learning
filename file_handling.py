@@ -67,7 +67,7 @@ def object_normalized(features):
     max = features[0]
     for i in range(len(max)):
         for j in features:
-            if j[i] > max:
+            if j[i] > max[i]:
                 max[i] = j[i]
 
     for i in range(len(max)):
@@ -129,3 +129,36 @@ def randomlysplit(object_points):
             point.original_value = 'tree'
         i += 1
     return object_points, training_list, test_list
+
+
+def ground_truth_label(point, original_index):
+    if 0 <= original_index <= 99:
+        point.original_index = 0
+    elif 100 <= original_index <= 199:
+        point.original_index = 1
+    elif 200 <= original_index <= 299:
+        point.original_index = 2
+    elif 300 <= original_index <= 399:
+        point.original_index = 3
+    elif 400 <= original_index <= 499:
+        point.original_index = 4
+
+
+def randomly_split(object_points):
+    label = []
+    testing_set = object_points
+    s = set(object_points)
+    training_set = set(random.sample(s, (round(len(object_points) * 0.6))))
+
+    for point in object_points:
+        original_index = object_points.index(point)
+        point = point_type(point)
+
+        if point in training_set:
+            point.cluster = 1
+            del testing_set[original_index]
+
+        ground_truth_label(point, original_index)
+        label.append(point.original_index)
+        
+    return training_set, label, testing_set
