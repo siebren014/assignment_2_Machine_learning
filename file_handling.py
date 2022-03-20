@@ -145,20 +145,29 @@ def ground_truth_label(point, original_index):
 
 
 def randomly_split(object_points):
+    length = set(range(len(object_points)))
     label = []
-    testing_set = object_points
-    s = set(object_points)
-    training_set = set(random.sample(s, (round(len(object_points) * 0.6))))
+    training_list = []
+    test_list = []
+
+    # testing_set = object_points
+    # s = set(object_points)
+    training_set = set(random.sample(length, (round(len(object_points) * 0.6))))
 
     for point in object_points:
+
         original_index = object_points.index(point)
         point = point_type(point)
+        point.original_index = original_index
 
-        if point in training_set:
+        if original_index in training_set:
             point.cluster = 1
-            del testing_set[original_index]
+            training_list.append(point)
+        else:
+            point.cluster = 2
+            test_list.append(point)
 
         ground_truth_label(point, original_index)
         label.append(point.original_index)
         
-    return training_set, label, testing_set
+    return training_list, label, test_list

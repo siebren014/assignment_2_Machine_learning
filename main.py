@@ -35,34 +35,18 @@ if __name__ == '__main__':
         height_area_ratio = area / height_diff
         middle = f.points_inmiddle(object)
 
-        # calculate normalized features
-        # area_norm = fh.normalize(area)
-        # volume_norm = fh.normalize(volume)
-        # height_diff_norm = fh.normalize(height_diff)
-        # dens_norm = fh.normalize(dens)
-        # leng_norm = fh.normalize(leng)
-        # squared_norm = fh.normalize(squared)
-        # vol_dens_norm = fh.normalize(vol_dens)
-        # top_ratio_norm = fh.normalize(top_ratio)
-        # bottom_ratio_norm = fh.normalize(bottom_ratio)
-        # height_area_ratio_norm = fh.normalize(height_area_ratio)
-        # middle_norm = fh.normalize(middle)
-
         # append the values to object_values to perform the clustering on
-        # object_values.append([dens, vol_dens, top_ratio, bottom_ratio, height_area_ratio, middle])
+        object_values.append([dens, vol_dens, top_ratio, bottom_ratio, height_area_ratio, middle])
+        # append the amount of points of the objects, later we can use this amount of points to link points to a cluster
+        object_size.append(len(object))
 
-        # normalized_object_values.append(
-        #     [dens_norm, vol_dens_norm, top_ratio_norm, bottom_ratio_norm, height_area_ratio_norm, middle_norm])
-        # # append the amount of points of the objects, later we can use this amount of points to link points to a cluster
-        # object_size.append(len(object))
-        
     normalized_object_values = fh.object_normalized(object_values)
     # object values for each object
     object_points = np.array(object_values).astype(np.float64)
-    n_object_points = np.array(normalized_object_values).astype(np.float64)
+    # n_object_points = np.array(normalized_object_values).astype(np.float64)
 
     # split the data set into two data set and the label set:
-    training_set, label, testing_set = fh.randomly_split(n_object_points)
+    training_set, label, testing_set = fh.randomly_split(normalized_object_values)
 
     training_set = np.array(training_set).astype(np.float64)
     label = np.array(label).astype(np.float64)
