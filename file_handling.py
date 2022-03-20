@@ -135,3 +135,15 @@ def randomly_split(object_points):
         # ground_truth_label(point, original_index)
 
     return training_list, label, test_list, object_points
+
+
+# get truth labels for all objects
+def get_label(object_points):
+    label = []
+    for point in object_points:
+        original_index = object_points.index(point)
+        point = point_type(point)
+        point.original_index = original_index
+        truth_label = ground_truth_label(point, original_index)
+        label.append(truth_label)
+    return label

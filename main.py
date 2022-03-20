@@ -1,12 +1,13 @@
-#Siebren Meines 4880412
-#Fengyan
-#Yitong
+# Siebren Meines 4880412
+# Fengyan
+# Yitong
 
-import features as f
-import file_handling as fh
-from sklearn import svm
-from sklearn.ensemble import RandomForestClassifier as RF
-import numpy as np
+import features as f # design features
+import file_handling as fh # read and write files
+from sklearn import svm # svm classification
+from sklearn.ensemble import RandomForestClassifier as RF # random forest classifications
+from sklearn.model_selection import train_test_split # train and test dataset 
+import numpy as np # to help store the objects
 
 if __name__ == '__main__':
     # read the input file
@@ -43,28 +44,74 @@ if __name__ == '__main__':
         # append the amount of points of the objects, later we can use this amount of points to link points to a cluster
         object_size.append(len(object))
 
+    # ------------------------ prepare data set ------------------------
+    # 500 objects with 6 normalized attributes
     normalized_object_values = fh.object_normalized(object_values)
+
+    # convert it to float 64
+    dataset =  np.array(normalized_object_values).astype(np.float64)
+
+    # get labels of 500 objects
+    all_label = fh.get_label(normalized_object_values)
+
+    #convert it to float 64
+    dataset_label = np.array(all_label).astype(np.float64)
+
+    # dataset -- 500 x 6 2d array, contains 500 objects, each object has 6 attributes
+    # dataset_label -- 500 x 1 1d array, contains 500 labels for each object
+
+    # get the train and test data
+    X_train, X_test, y_train, y_test = train_test_split(dataset, dataset_label, test_size=0.4, random_state=0)
+
+    #-------------------------------------------------------------------
+
+    # ------------train the model and print the prediction -------------
+    
+    # SVM
+    print("svm classification")
+    clf = svm.SVC(C=0.1, kernel='linear', decision_function_shape='ovr')
+    clf.fit(X_train, y_train)
+
+    print("statistics: ")
+    print("Training accuracy:"+str(clf.score(X_train,y_train)))
+    print("Test accuracy:"+str(clf.score(X_test,y_test)))
+
+    pred_label = clf.predict(X_test)
+    print()
+
+    # Random Forest
+    print("Random Forest classification")
+    # -------------------------------------------------------------------
+
+    
+    # From president of GEOS --------------------------------------------
+
     # object values for each object
-    object_points = np.array(object_values).astype(np.float64)
+    # object_points = np.array(object_values).astype(np.float64)
 
     # split the data set into two data set and the label set:
-    training_set, label, testing_set, help_objects = fh.randomly_split(normalized_object_values)
+    # training_set, label, testing_set, help_objects = fh.randomly_split(normalized_object_values)
 
-    training_set = np.array(training_set).astype(np.float64)
-    label = np.array(label).astype(np.float64)
-    testing_set = np.array(testing_set).astype(np.float64)
+    # training_set = np.array(training_set).astype(np.float64)
+    # label = np.array(label).astype(np.float64)
+    # testing_set = np.array(testing_set).astype(np.float64)
 
     # random forest training and classifying
-    clf = RF(random_state=0)
-    clf.fit(training_set, label)
-    rf_predict = clf.predict(testing_set)
-    print(rf_predict)
+    # clf = RF(random_state=0)
+    # clf.fit(training_set, label)
+    # rf_predict = clf.predict(testing_set)
+    # print("random forest prediction: ")
+    # print(rf_predict)
 
-    #SVM training and classifying
-    support_vm = svm.SVC(kernel='linear')  # Linear Kernel
-    support_vm.fit(training_set, label)
-    svm_predict = support_vm.predict(testing_set)
-    print(svm_predict)
+    # SVM training and classifying
+    # support_vm = svm.SVC(kernel='linear')  # Linear Kernel
+    # support_vm.fit(training_set, label)
+    # svm_predict = support_vm.predict(testing_set)
+    # print("SVM prediction: ")
+    # print(svm_predict)
+
+    # From president of GEOS --------------------------------------------
+
 
     # construct later
     # ##evaluate the classification
