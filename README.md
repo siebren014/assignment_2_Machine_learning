@@ -29,3 +29,9 @@ Relevant python files are entitled with "ML".
 ## Tips
 
 Relative path is used thus this project can be cloned and run directly without any modifications.
+
+Before you run this project, you can find the packages needed: 
+[requirements.txt](https://github.com/siebren014/assignment_2_Machine_learning/blob/master/requirements.txt)
+
+Use `pip install -r requirements.txt` to install appropriate versions of all dependent packages if you haven't got them.
+
