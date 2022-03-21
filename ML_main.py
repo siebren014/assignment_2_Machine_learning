@@ -6,6 +6,7 @@ from sklearn.ensemble import RandomForestClassifier as RF # random forest classi
 from sklearn.model_selection import train_test_split # train and test dataset 
 from sklearn.metrics import confusion_matrix # confusion matrix
 from sklearn.metrics import classification_report # classification report
+from sklearn.decomposition import PCA # PCA analysis, for features
 
 import matplotlib.pyplot as plt
 
@@ -65,16 +66,30 @@ if __name__ == '__main__':
    print(classification_report(y_test, clf_rf.predict(X_test)))
    print()
 
-   # plot for svm
-   # --------------------------------------------------------------------
-   #clf = svm.SVC(kernel="linear", C=1000)
-   #clf.fit(X_train, y_train)
-   #plt.scatter(X_train[:, 0], X_train[:, 1], c=y_train, s=30, cmap=plt.cm.Paired)
+   # PCA
+   print("PCA analysis")
+   pca = PCA(n_components=6) # original 6 features
+   pca_result = pca.fit(dataset)
+   print("variance ratio of 6 features: ")
+   print(pca.explained_variance_ratio_)
+   print("variance of 6 features: ")
+   print(pca.explained_variance_) # the variance of the first feature is too big
+   print()
+   
+   print("select 3 features: ")
+   pca = PCA(n_components=3) # selecting features
+   pca_result = pca.fit(dataset)
+   print("variance ratio of 3 features: ")
+   print(pca.explained_variance_ratio_)
+   print("variance of 3 features: ")
+   print(pca.explained_variance_)
+   print()
 
-   # plot the decision function
-   #ax = plt.gca()
-   #xlim = ax.get_xlim()
-   #ylim = ax.get_ylim()
-
-   #plt.show()
+   dataset_new = pca.transform(dataset) # dataset with 3 selected features
+   fig = plt.figure()
+   ax = fig.add_subplot(111, projection='3d')
+   ax.scatter(dataset_new[:, 0], dataset_new[:, 1],  dataset_new[:, 2], marker='o')
+   #plt.scatter(dataset_new[:, 0], dataset_new[:, 1], marker='o') # show figure in 2d with 2 features
+   plt.show()
+  
 
