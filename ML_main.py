@@ -10,7 +10,7 @@ from sklearn.decomposition import PCA # PCA analysis, for features
 
 import matplotlib.pyplot as plt
 
-# proform SVM
+# perform SVM
 def ml_svm(dataset, label):
     # prepare the train and test data set
     X_train, X_test, y_train, y_test = train_test_split(dataset, label, test_size=0.4, random_state=0)
@@ -36,7 +36,7 @@ def ml_svm(dataset, label):
     print(classification_report(y_test, clf_svm.predict(X_test)))
     print()
 
-# perofrm RF
+# perform RF
 def ml_RF(dataset, label):
     # prepare the train and test data set
     X_train, X_test, y_train, y_test = train_test_split(dataset, label, test_size=0.4, random_state=0)
