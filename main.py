@@ -11,6 +11,8 @@ from sklearn.ensemble import RandomForestClassifier as RF # random forest classi
 from sklearn.model_selection import train_test_split # train and test dataset 
 from sklearn.metrics import confusion_matrix # confusion matrix
 
+import ML_dataset as ML
+
 
 if __name__ == '__main__':
     # read the input file
@@ -111,6 +113,9 @@ if __name__ == '__main__':
 
     # -------------------------------------------------------------------
 
+    # store dataset and label, load it directly to shorten the running time
+    ML.store_dataset_as_txt(dataset) # ML: ML_dataset.py
+    ML.store_label_as_txt(dataset_label)
     
     # From president of GEOS --------------------------------------------
 
