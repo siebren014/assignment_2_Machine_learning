@@ -25,3 +25,7 @@ Relevant python files are entitled with "ML".
 [ML_dataset.py](https://github.com/siebren014/assignment_2_Machine_learning/blob/master/ML_dataset.py) -- functions to store 500 objects and labels as `.txt` files.
 
 [ML_main.py](https://github.com/siebren014/assignment_2_Machine_learning/blob/master/ML_main.py) -- set this as startup project and run.
+
+## Tips
+
+Relative path is used thus this project can be cloned and run directly without any modifications.
