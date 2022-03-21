@@ -1,14 +1,20 @@
 # assignment_2_Machine_learning
 Machine learning environment for Siebren, Yitong & Fengyan;
 
-# Info
+## Info
 Each run needs to establish `objects` from more than one million points of [point cloud files](https://github.com/siebren014/assignment_2_Machine_learning/tree/master/scene_objects/scene_objects/data), and then train and test the objects dataset, which is very time-consuming. Therefore, store the generated `500 objects with normalized features` as `dataset.txt` file and the corresponding `ground truth label` as `label.txt` file. 
 
 Thus we can directly read these two files for `SVM` and `Random Forest` algorithm.
 
+## HOW TO USE
+
+[Pre_main.py](https://github.com/siebren014/assignment_2_Machine_learning/blob/master/Pre_main.py) -- run this file to build the dataset and label.
+
+[ML_main.py](https://github.com/siebren014/assignment_2_Machine_learning/blob/master/ML_main.py) -- run this file to perform `SVM` and `Random Forest` classification.
+
 --> Features need to be changed?
 
-Run [main.py](https://github.com/siebren014/assignment_2_Machine_learning/blob/master/main.py) and txt files will be updated.
+Run [Pre_main.py](https://github.com/siebren014/assignment_2_Machine_learning/blob/master/Pre_main.py) and txt files will be updated.
 
 ## [Dataset](https://github.com/siebren014/assignment_2_Machine_learning/tree/master/dataset) folder:
 
