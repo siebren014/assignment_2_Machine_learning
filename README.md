@@ -18,6 +18,10 @@ Run [main.py](https://github.com/siebren014/assignment_2_Machine_learning/blob/m
 [label.txt](https://github.com/siebren014/assignment_2_Machine_learning/blob/master/dataset/label.txt)
 -- store the ground truth labels of 500 objects file
 
+## [Figure](https://github.com/siebren014/assignment_2_Machine_learning/tree/master/Figure) folder
+
+Store the pictures/screenshots which may be used in report.
+
 ## python files for performing algorithms
 
 Relevant python files are entitled with "ML".
