@@ -22,6 +22,10 @@ Run [main.py](https://github.com/siebren014/assignment_2_Machine_learning/blob/m
 
 Store the pictures/screenshots which may be used in report.
 
+[correlation.png](https://github.com/siebren014/assignment_2_Machine_learning/blob/master/Figure/correlation.png) -- indicates the correlations between 6 attributes, as a reference for selecting attributes.
+
+[dataset_3_features.png](https://github.com/siebren014/assignment_2_Machine_learning/blob/master/Figure/dataset_3_features.png) -- shows the dataset with selected 3 attributes in 3D (attributes are selected using PCA).
+
 ## python files for performing algorithms
 
 Relevant python files are entitled with "ML".
