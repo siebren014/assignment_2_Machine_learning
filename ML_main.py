@@ -109,7 +109,7 @@ def plot_correlation_check(dataset):
 if __name__ == '__main__':
    
    # load dataset and label from dataset folder
-   path = os.getcwd() + r"\dataset" 
+   path = os.getcwd() + r"\Dataset" 
    dataset_file = path + r"\dataset.txt" 
    label_file = path + r"\label.txt" 
    dataset = np.loadtxt(dataset_file)
