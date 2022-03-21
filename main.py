@@ -63,59 +63,13 @@ if __name__ == '__main__':
     dataset_label = np.array(all_label).astype(np.float64)
 
     # dataset -- 500 x 6 2d array, contains 500 objects, each object has 6 attributes
-    # dataset_label -- 500 x 1 1d array, contains 500 labels for each object
-
-    # get the train and test data
-    X_train, X_test, y_train, y_test = train_test_split(dataset, dataset_label, test_size=0.4, random_state=0)
-
-    #-------------------------------------------------------------------
-
-    # ------------train the model and print the prediction -------------
-    
-    # SVM
-    print("svm classification")
-    clf_svm = svm.SVC(C=0.1, kernel='linear', decision_function_shape='ovr')
-    clf_svm.fit(X_train, y_train.ravel())
-
-    print("statistics: ")
-    print("Training accuracy:"+str(clf_svm.score(X_train,y_train)))
-    print("Test accuracy:"+str(clf_svm.score(X_test,y_test)))
-
-    # get predicted label
-    y_pred_svm = clf_svm.predict(X_test)
-
-    # get confusion matrix
-    Confusion_matrix_svm = confusion_matrix(y_test, y_pred_svm)
-    print("confusion matrix of svm: ")
-    print(Confusion_matrix_svm)
-    print()
-
-
-    # Random Forest -- need to adjust the parameters
-    print("Random Forest classification")
-    clf_RF = RF(n_estimators=100,n_jobs=2) # overfitting
-    clf_RF.fit(X_train, y_train.ravel())
-
-    print("statistics: ")
-    print("Training accuracy:"+str(clf_RF.score(X_train,y_train)))
-    print("Test accuracy:"+str(clf_RF.score(X_test,y_test)))
-
-    # get predicted label
-    y_pred_RF = clf_RF.predict(X_test)
-
-    # get confusion matrix
-    Confusion_matrix_RF = confusion_matrix(y_test, y_pred_RF)
-    print("confusion matrix of Random Forest: ")
-    print(Confusion_matrix_RF)
-    print("feature importances: ")
-    print(clf_RF.feature_importances_)
-    print()
-
-    # -------------------------------------------------------------------
+    # dataset_label -- 500 x 1 1d array, contains 500 labels for each object    
 
     # store dataset and label, load it directly to shorten the running time
     ML.store_dataset_as_txt(dataset) # ML: ML_dataset.py
     ML.store_label_as_txt(dataset_label)
+
+    #-------------------------------------------------------------------
     
     # From president of GEOS --------------------------------------------
 
