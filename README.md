@@ -22,7 +22,7 @@ Thus we can directly read these two files for `SVM` and `Random Forest` algorith
 * --> Change features in [Pre_main.py](https://github.com/siebren014/assignment_2_Machine_learning/blob/master/Pre_main.py) and run it, `.txt` files will be updated.
 Then use [ML_main.py](https://github.com/siebren014/assignment_2_Machine_learning/blob/master/ML_main.py) to perform classifications.
 
-## [Dataset](https://github.com/siebren014/assignment_2_Machine_learning/tree/master/dataset) folder:
+## Dataset folder:
 
 [dataset.txt](https://github.com/siebren014/assignment_2_Machine_learning/blob/master/dataset/dataset.txt)
 -- store the 500 objects file(with 6 normalized features)
@@ -30,7 +30,7 @@ Then use [ML_main.py](https://github.com/siebren014/assignment_2_Machine_learnin
 [label.txt](https://github.com/siebren014/assignment_2_Machine_learning/blob/master/dataset/label.txt)
 -- store the ground truth labels of 500 objects file
 
-## [Figure](https://github.com/siebren014/assignment_2_Machine_learning/tree/master/Figure) folder
+## Figure folder
 
 Store the pictures/screenshots which may be used in report.
 
