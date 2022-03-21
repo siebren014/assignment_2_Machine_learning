@@ -10,7 +10,7 @@ Thus we can directly read these two files for `SVM` and `Random Forest` algorith
 
 Run [main.py](https://github.com/siebren014/assignment_2_Machine_learning/blob/master/main.py) and txt files will be updated.
 
-## [dataset](https://github.com/siebren014/assignment_2_Machine_learning/tree/master/dataset) folder:
+## [Dataset](https://github.com/siebren014/assignment_2_Machine_learning/tree/master/dataset) folder:
 
 [dataset.txt](https://github.com/siebren014/assignment_2_Machine_learning/blob/master/dataset/dataset.txt)
 -- store the 500 objects file(with 6 normalized features)
