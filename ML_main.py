@@ -8,7 +8,9 @@ from sklearn.metrics import confusion_matrix # confusion matrix
 from sklearn.metrics import classification_report # classification report
 from sklearn.decomposition import PCA # PCA analysis, for features
 
+import pandas as pd
 import matplotlib.pyplot as plt
+import seaborn as sns
 
 # perform SVM
 def ml_svm(dataset, label):
@@ -86,6 +88,24 @@ def pca_analysis(dataset):
     selected_dataset = pca.transform(dataset) # dataset with 3 selected features
     return selected_dataset
 
+# plot selected 3 attributes of dataset
+def plot_dataset(selected_dataset):
+    # plot dataset with 3 attributes
+    fig = plt.figure()
+    ax = fig.add_subplot(111, projection='3d')
+    ax.scatter(selected_dataset[:, 0], selected_dataset[:, 1],  selected_dataset[:, 2], marker='o')
+    plt.savefig(os.getcwd() + r"\Figure" + "\dataset_3_features.png")
+    plt.show()
+
+# plot correlation between attributes
+def plot_correlation_check(dataset):
+    Data = pd.DataFrame(dataset)
+    data = Data.corr()
+    sns.heatmap(data,cmap='Blues',annot=True, square=True, fmt='.2g')
+    plt.savefig(os.getcwd() + r"\Figure" + "\correlation.png")
+    plt.show()
+
+
 if __name__ == '__main__':
    
    # load dataset and label from dataset folder
@@ -113,10 +133,10 @@ if __name__ == '__main__':
    # RF
    ml_RF(selected_dataset, label)
 
-   # plot dataset with 3 attributes
-   fig = plt.figure()
-   ax = fig.add_subplot(111, projection='3d')
-   ax.scatter(selected_dataset[:, 0], selected_dataset[:, 1],  selected_dataset[:, 2], marker='o')
-   plt.show()
+   # plot dataset with 3 selected attributes
+   # plot_dataset(selected_dataset) # uncomment this to plot the dataset with 3 attributes in 3D space
+
+   # correlation check
+   plot_correlation_check(dataset)
   
 
