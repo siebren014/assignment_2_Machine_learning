@@ -6,6 +6,8 @@ Each run needs to establish `objects` from more than one million points of [poin
 
 Thus we can directly read these two files for `SVM` and `Random Forest` algorithm.
 
+All the `.py` files are in the [src](https://github.com/siebren014/assignment_2_Machine_learning/tree/master/src) folder.
+
 ## HOW TO USE
 
 * In folder [Dataset](https://github.com/siebren014/assignment_2_Machine_learning/tree/master/dataset), 
