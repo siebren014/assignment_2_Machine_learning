@@ -171,7 +171,7 @@ if __name__ == '__main__':
    # plot violin using feature_id : 0, 1, 2, 3, 4, 5 -- indicating 6 features
    # x-axis: 1, 2, 3, 4, 5 -- indicating five categories: building, car, fence, pole, tree
    # both: dataset with labels, the first 6 columns are features, the 7th column is the labels
-   plot_violin_features(both, 2)
+   # plot_violin_features(both, 2) # uncomment this to plot the violin graph for a feature
    
   
 
