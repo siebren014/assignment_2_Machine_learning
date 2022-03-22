@@ -7,6 +7,7 @@ from sklearn.model_selection import train_test_split # train and test dataset
 from sklearn.metrics import confusion_matrix # confusion matrix
 from sklearn.metrics import classification_report # classification report
 from sklearn.decomposition import PCA # PCA analysis, for features
+import sklearn.model_selection as ms # cross validation
 
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -20,8 +21,19 @@ def ml_svm(dataset, label):
     # perform svm
     # --------------------------------------------------------------------
     print("svm classification --------------------------------------------------------------------")
-    clf_svm = svm.SVC(C=0.1, kernel='linear', decision_function_shape='ovr')
-    clf_svm.fit(X_train, y_train.ravel())
+
+    # build the svm classifier
+    clf_svm = svm.SVC(C=0.1, kernel='linear', decision_function_shape='ovr') # classifier
+   
+    # cross validation
+    # accuracy
+    cross_ac_svm = ms.cross_val_score(clf_svm, X_train, y_train, cv=5, scoring='accuracy')
+    print("cross validation of svm: ")
+    print("cross validation accuracy (svm): ",  cross_ac_svm.mean())
+    print()
+
+    print("train the svm classifier: ")
+    clf_svm.fit(X_train, y_train.ravel())  # train the classifier with train dataset
 
     print("statistics: ")
     print("Training accuracy:" + str(clf_svm.score(X_train,y_train)))
@@ -45,7 +57,14 @@ def ml_RF(dataset, label):
 
     print("Random Forest classification ------------------------------------------------------------")
     clf_rf = RF(n_estimators=100,n_jobs=2) # a little overfitting
-    clf_rf.fit(X_train, y_train.ravel())
+
+    cross_ac_rf = ms.cross_val_score(clf_rf, X_train, y_train, cv=5, scoring='accuracy')
+    print("cross validation of RF: ")
+    print("cross validation accuracy (RF): ",  cross_ac_rf.mean())
+    print()
+
+    print("train the RF classifier: ")
+    clf_rf.fit(X_train, y_train.ravel()) # fit the data
 
     print("statistics: ")
     print("Training accuracy:" + str(clf_rf.score(X_train,y_train)))
@@ -137,6 +156,6 @@ if __name__ == '__main__':
    # plot_dataset(selected_dataset) # uncomment this to plot the dataset with 3 attributes in 3D space
 
    # correlation check
-   plot_correlation_check(dataset)
+   # plot_correlation_check(dataset) # uncomment this to plot the correlation matrix of the dataset
   
 
