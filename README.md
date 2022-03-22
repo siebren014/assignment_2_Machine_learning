@@ -1,5 +1,5 @@
 # assignment_2_Machine_learning
-Machine learning environment for Siebren, Yitong & Fengyan;
+Machine learning environment for Siebren, Yitong & Fengyan.
 
 ## Basic Info
 Each run needs to establish `objects` from more than one million points of [point cloud files](https://github.com/siebren014/assignment_2_Machine_learning/tree/master/scene_objects/scene_objects/data), and then train and test the objects dataset, which is very time-consuming. Therefore, store the generated `500 objects with normalized features` as `dataset.txt` file and the corresponding `ground truth label` as `label.txt` file. 
@@ -15,21 +15,21 @@ All the `.py` files are in the [src](https://github.com/siebren014/assignment_2_
 [label.txt](https://github.com/siebren014/assignment_2_Machine_learning/blob/master/dataset/label.txt) files should already exist.
 
 * If not, run
-[src\Pre_main.py](https://github.com/siebren014/assignment_2_Machine_learning/blob/master/Pre_main.py) to build the `dataset.txt` and `label.txt`.
+[src\Pre_main.py](https://github.com/siebren014/assignment_2_Machine_learning/blob/master/src/Pre_main.py) to build the `dataset.txt` and `label.txt`.
 
-* If files already exist, run [src\ML_main.py](https://github.com/siebren014/assignment_2_Machine_learning/blob/master/ML_main.py) to perform `SVM` and `Random Forest` classification.
+* If files already exist, run [src\ML_main.py](https://github.com/siebren014/assignment_2_Machine_learning/blob/master/src/ML_main.py) to perform `SVM` and `Random Forest` classification.
 
 * --> Features need to be changed?
 
-* --> Change features in [src\Pre_main.py](https://github.com/siebren014/assignment_2_Machine_learning/blob/master/Pre_main.py) and run it, `.txt` files will be updated.
-Then use [src\ML_main.py](https://github.com/siebren014/assignment_2_Machine_learning/blob/master/ML_main.py) to perform classifications.
+* --> Change features in [src\Pre_main.py](https://github.com/siebren014/assignment_2_Machine_learning/blob/master/src/Pre_main.py) and run it, `.txt` files will be updated.
+Then use [src\ML_main.py](https://github.com/siebren014/assignment_2_Machine_learning/blob/master/src/ML_main.py) to perform classifications.
 
 ## Dataset folder:
 
-[dataset.txt](https://github.com/siebren014/assignment_2_Machine_learning/blob/master/dataset/dataset.txt)
+[dataset.txt](https://github.com/siebren014/assignment_2_Machine_learning/blob/master/Dataset/dataset.txt)
 -- store the 500 objects file(with 6 normalized features)
 
-[label.txt](https://github.com/siebren014/assignment_2_Machine_learning/blob/master/dataset/label.txt)
+[label.txt](https://github.com/siebren014/assignment_2_Machine_learning/blob/master/Dataset/label.txt)
 -- store the ground truth labels of 500 objects file
 
 ## Figure folder
@@ -53,7 +53,7 @@ Relevant python files are entitled with "ML".
 Relative path is used thus this project can be cloned and run directly without any modifications.
 
 Before you run this project, you can find the packages needed: 
-[requirements.txt](https://github.com/siebren014/assignment_2_Machine_learning/blob/master/requirements.txt)
+[requirements.txt](https://github.com/siebren014/assignment_2_Machine_learning/blob/master/requirements.txt).
 
 Use `pip install -r requirements.txt` to install appropriate versions of all dependent packages if you haven't got them.
 
