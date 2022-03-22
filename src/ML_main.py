@@ -125,10 +125,10 @@ def plot_correlation_check(dataset):
     plt.show()
 
 # plot the violin plot to observe the selected features
-def plot_violin_features(dataset, label, feature_id):
-    Data = pd.DataFrame(dataset) # convert to df to get one column
-    labels = pd.DataFrame(label)
-    sns.violinplot(x=Data[0],y=labels,data=Data) 
+def plot_violin_features(both, feature_id):
+    Data = pd.DataFrame(both) # convert to df to get one column
+    sns.violinplot(x=6,y=feature_id,data=Data) 
+    plt.show()
 
 
 if __name__ == '__main__':
@@ -139,6 +139,10 @@ if __name__ == '__main__':
    label_file = path + r"\label.txt" 
    dataset = np.loadtxt(dataset_file)
    label = np.loadtxt(label_file)
+
+   # load dataset with labels
+   both_file = path + r"\both.txt" 
+   both =  np.loadtxt(both_file)
 
    # SVM
    ml_svm(dataset, label)
@@ -164,11 +168,10 @@ if __name__ == '__main__':
    # correlation check
    # plot_correlation_check(dataset) # uncomment this to plot the correlation matrix of the dataset
 
-   # plot violin using feature : 0, 1, 2, 3, 4, 5
-   # plot_violin_features(dataset, label, 0)
-   #Data = pd.DataFrame(dataset) # convert to df to get one column
-   #labels = pd.DataFrame(label)
-   #sns.violinplot(x=0,y=1,data=Data) 
-   #plt.show()
+   # plot violin using feature_id : 0, 1, 2, 3, 4, 5 -- indicating 6 features
+   # x-axis: 1, 2, 3, 4, 5 -- indicating five categories: building, car, fence, pole, tree
+   # both: dataset with labels, the first 6 columns are features, the 7th column is the labels
+   plot_violin_features(both, 2)
+   
   
 
