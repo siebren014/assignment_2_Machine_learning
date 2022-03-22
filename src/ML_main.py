@@ -124,6 +124,12 @@ def plot_correlation_check(dataset):
     plt.savefig(os.getcwd() + r"\Figure" + "\correlation.png")
     plt.show()
 
+# plot the violin plot to observe the selected features
+def plot_violin_features(dataset, label, feature_id):
+    Data = pd.DataFrame(dataset) # convert to df to get one column
+    labels = pd.DataFrame(label)
+    sns.violinplot(x=Data[0],y=labels,data=Data) 
+
 
 if __name__ == '__main__':
 
@@ -157,5 +163,12 @@ if __name__ == '__main__':
 
    # correlation check
    # plot_correlation_check(dataset) # uncomment this to plot the correlation matrix of the dataset
+
+   # plot violin using feature : 0, 1, 2, 3, 4, 5
+   # plot_violin_features(dataset, label, 0)
+   #Data = pd.DataFrame(dataset) # convert to df to get one column
+   #labels = pd.DataFrame(label)
+   #sns.violinplot(x=0,y=1,data=Data) 
+   #plt.show()
   
 

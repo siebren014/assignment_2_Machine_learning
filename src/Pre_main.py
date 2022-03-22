@@ -88,12 +88,8 @@ if __name__ == '__main__':
     # store dataset and label, load it directly to shorten the running time
     ML.store_dataset_as_txt(dataset) # ML: ML_dataset.py
     ML.store_label_as_txt(label)
+    ML.store_both_as_txt(dataset, label) # after this function, dataset has a 7-th dimension indicating the labels
 
-    print("dataset constructed, stored in: ", end = " ")
-    print(os.getcwd() + r"\Dataset" + r"\dataset.txt" )
-
-    print("label constructed, stored in: ", end = " ")
-    print(os.getcwd() + r"\Dataset" + r"\label.txt" )
 
     #-------------------------------------------------------------------
     
