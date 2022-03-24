@@ -14,6 +14,7 @@ from sklearn.manifold import TSNE
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
+import evaluation as e
 
 # perform SVM
 def ml_svm(dataset, label):
@@ -40,7 +41,7 @@ def ml_svm(dataset, label):
     print("statistics: ")
     print("Training accuracy:" + str(clf_svm.score(X_train,y_train)))
     print("Test accuracy:" + str(clf_svm.score(X_test,y_test)))
-
+   
     # get predicted label
     y_pred_svm = clf_svm.predict(X_test)
 
@@ -48,6 +49,13 @@ def ml_svm(dataset, label):
     Confusion_matrix_svm = confusion_matrix(y_test, y_pred_svm)
     print("confusion matrix of svm: ")
     print(Confusion_matrix_svm)
+    
+    # overall accuracy and mean accuracy
+    oa=e.OA(Confusion_matrix_svm)
+    print({}{}.format("overall accuracy of svm: ",oa))
+    ma=e.mA(Confusion_matrix_svm)
+    print({}{}.format("mean accuracy of svm: ",ma))
+    
     print("classification report: ")
     print(classification_report(y_test, clf_svm.predict(X_test)))
     print()
@@ -71,7 +79,7 @@ def ml_RF(dataset, label):
     print("statistics: ")
     print("Training accuracy:" + str(clf_rf.score(X_train,y_train)))
     print("Test accuracy:" + str(clf_rf.score(X_test,y_test)))
-
+    
     # get predicted label
     y_pred_rf = clf_rf.predict(X_test)
 
@@ -79,6 +87,13 @@ def ml_RF(dataset, label):
     Confusion_matrix_rf = confusion_matrix(y_test, y_pred_rf)
     print("confusion matrix of Random Forest: ")
     print(Confusion_matrix_rf)
+    
+    # overall accuracy and mean accuracy
+    oa=e.OA(Confusion_matrix_rf)
+    print({}{}.format("overall accuracy of rf: ",oa))
+    ma=e.mA(Confusion_matrix_rf)
+    print({}{}.format("mean accuracy of rf: ",ma))
+    
     print("feature importances: ")
     print(clf_rf.feature_importances_) # maybe helpful to select features
     print("classification report: ")
