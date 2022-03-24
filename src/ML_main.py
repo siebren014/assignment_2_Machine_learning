@@ -8,6 +8,8 @@ from sklearn.metrics import confusion_matrix # confusion matrix
 from sklearn.metrics import classification_report # classification report
 from sklearn.decomposition import PCA # PCA analysis, for features
 import sklearn.model_selection as ms # cross validation
+from sklearn.manifold import TSNE
+
 
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -130,6 +132,16 @@ def plot_violin_features(both, feature_id):
     sns.violinplot(x=6,y=feature_id,data=Data) 
     plt.show()
 
+# plot t-SNE
+def plot_t_sne(dataset):
+    tsne = TSNE(n_components=2)
+    tsne.fit_transform(dataset)
+    print("data after dimensionality reduction")
+    # print(tsne.embedding_)
+    plt.scatter(tsne.embedding_[:,0],tsne.embedding_[:,1])
+    plt.show()
+
+
 
 if __name__ == '__main__':
 
@@ -143,6 +155,9 @@ if __name__ == '__main__':
    # load dataset with labels
    both_file = path + r"\both.txt" 
    both =  np.loadtxt(both_file)
+   
+   # plot using t-SNE
+   # plot_t_sne(dataset) # uncomment this to plot the t-SNE figure
 
    # SVM
    ml_svm(dataset, label)
@@ -172,6 +187,8 @@ if __name__ == '__main__':
    # x-axis: 1, 2, 3, 4, 5 -- indicating five categories: building, car, fence, pole, tree
    # both: dataset with labels, the first 6 columns are features, the 7th column is the labels
    # plot_violin_features(both, 2) # uncomment this to plot the violin graph for a feature
+
+ 
    
   
 
