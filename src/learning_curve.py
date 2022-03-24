@@ -34,11 +34,11 @@ def plot_learning_curve(
     if axes is None:
         _, axes = plt.subplots(1, 3, figsize=(20, 5))
 
-    axes[0].set_title(title)
+    axes.set_title(title)
     if ylim is not None:
-        axes[0].set_ylim(*ylim)
-    axes[0].set_xlabel("Training examples")
-    axes[0].set_ylabel("Score")
+        axes.set_ylim(*ylim)
+    axes.set_xlabel("Training examples")
+    axes.set_ylabel("Score")
 
     train_sizes, train_scores, test_scores, fit_times, _ = learning_curve(
         estimator,
@@ -57,61 +57,29 @@ def plot_learning_curve(
     fit_times_mean = np.mean(fit_times, axis=1)
     fit_times_std = np.std(fit_times, axis=1)
 
-    axes[0].grid()
-    axes[0].fill_between(
+    axes.grid()
+    axes.fill_between(
         train_sizes,
         train_scores_mean - train_scores_std,
         train_scores_mean + train_scores_std,
         alpha=0.1,
         color="r",
     )
-    axes[0].fill_between(
+    axes.fill_between(
         train_sizes,
         test_scores_mean - test_scores_std,
         test_scores_mean + test_scores_std,
         alpha=0.1,
         color="g",
     )
-    axes[0].plot(
-        train_sizes, train_scores_mean, "o-", color="r", label="Training score"
+    axes.plot(
+        train_sizes, train_scores_mean, "o-", color="r", label="Overall accuracy"
     )
-    axes[0].plot(
-        train_sizes, test_scores_mean, "o-", color="g", label="Cross-validation score"
+    axes.plot(
+        train_sizes, test_scores_mean, "o-", color="g", label="Cross-validation accuracy"
     )
-    axes[0].legend(loc="best")
-
-    # Plot n_samples vs fit_times
-    axes[1].grid()
-    axes[1].plot(train_sizes, fit_times_mean, "o-")
-    axes[1].fill_between(
-        train_sizes,
-        fit_times_mean - fit_times_std,
-        fit_times_mean + fit_times_std,
-        alpha=0.1,
-    )
-    axes[1].set_xlabel("Training examples")
-    axes[1].set_ylabel("fit_times")
-    axes[1].set_title("Scalability of the model")
-
-    # Plot fit_time vs score
-    fit_time_argsort = fit_times_mean.argsort()
-    fit_time_sorted = fit_times_mean[fit_time_argsort]
-    test_scores_mean_sorted = test_scores_mean[fit_time_argsort]
-    test_scores_std_sorted = test_scores_std[fit_time_argsort]
-    axes[2].grid()
-    axes[2].plot(fit_time_sorted, test_scores_mean_sorted, "o-")
-    axes[2].fill_between(
-        fit_time_sorted,
-        test_scores_mean_sorted - test_scores_std_sorted,
-        test_scores_mean_sorted + test_scores_std_sorted,
-        alpha=0.1,
-    )
-    axes[2].set_xlabel("fit_times")
-    axes[2].set_ylabel("Score")
-    axes[2].set_title("Performance of the model")
-
+    axes.legend(loc="best")
     return plt
-
 
 if __name__ == '__main__':
 
@@ -122,27 +90,22 @@ if __name__ == '__main__':
     label = np.loadtxt(label_file)
 
     # we can define the estimator by ourselves
-    estimator= svm.SVC(C=0.1, kernel='linear', decision_function_shape='ovr')
+    # use different estimator to generator different figures
+    # estimator= svm.SVC(C=0.1, kernel='linear', decision_function_shape='ovr')
+    estimator=RF(n_estimators=50, n_jobs=2)
 
-    fig, axes = plt.subplots(3, 1, figsize=(10, 15))
+    fig, axes = plt.subplots(1, 1, figsize=(10, 15))
 
     X, y = dataset,label
 
-    title = "Learning Curves (SVM)"
+    title = "Learning Curves"
     # Cross validation with 50 iterations to get smoother mean test and train
     # score curves, each time with 20% data randomly selected as a validation set.
     cv = ShuffleSplit(n_splits=50, test_size=0.2, random_state=0)
 
     plot_learning_curve(
-        estimator, title, X, y, axes=axes, ylim=(0.5, 1.01), cv=cv, n_jobs=4
+        estimator, title, X, y, axes=axes, ylim=(0.6, 1.01), cv=cv, n_jobs=4
     )
 
     plt.show()
-
-
-
-    # load dataset and label from dataset folder
-    # all_x, all_y, all_z, all_point_list, points_per_object = fh.read()
-    # object_values, object_size = pre.design_features(points_per_object)
-    # dataset, label = pre.get_normalized_dataset_label(object_values)
 
