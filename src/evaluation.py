@@ -64,4 +64,30 @@ def confusion_matrix(pointlist):
     print(confusion_matrix)
     #do something with the confusion matrix print or whatever
     # website https://scikit-learn.org/stable/modules/generated/sklearn.metrics.ConfusionMatrixDisplay.html
+    
+    def OA(confusion_matrix):
+    N=0
+    correctness=0
+    for i in range(len(confusion_matrix)):
+        for j in range(len(confusion_matrix[i])):
+            N+=confusion_matrix[i][j]
+            if i==j:
+                correctness+=confusion_matrix[i][j]
+
+    oa=correctness/N
+    return oa
+
+def mA(confusion_matrix):
+    C=0
+    sum=0
+    for i in range(len(confusion_matrix)):
+        C+=1
+        N = 0
+        ni = 0
+        for j in range(len(confusion_matrix[i])):
+            N+=confusion_matrix[i][j]
+            if i==j:
+                ni=confusion_matrix[i][j]
+        sum+=ni/N
+    return sum/C
 
