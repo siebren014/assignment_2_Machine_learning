@@ -41,7 +41,7 @@ def design_features(points_per_object):
         middle = f.points_inmiddle(object)
 
         # append the values to object_values to perform the clustering on
-        object_values.append([dens, vol_dens, top_ratio, bottom_ratio, height_area_ratio, middle])
+        object_values.append([dens, vol_dens, leng, bottom_ratio, height_area_ratio, middle])
        
         # append the amount of points of the objects, later we can use this amount of points to link points to a cluster
         object_size.append(len(object))
@@ -89,52 +89,3 @@ if __name__ == '__main__':
     ML.store_dataset_as_txt(dataset) # ML: ML_dataset.py
     ML.store_label_as_txt(label)
     ML.store_both_as_txt(dataset, label) # after this function, dataset has a 7-th dimension indicating the labels
-
-
-    #-------------------------------------------------------------------
-    
-    # From president of GEOS --------------------------------------------
-
-    # object values for each object
-    # object_points = np.array(object_values).astype(np.float64)
-
-    # split the data set into two data set and the label set:
-    # training_set, label, testing_set, help_objects = fh.randomly_split(normalized_object_values)
-
-    # training_set = np.array(training_set).astype(np.float64)
-    # label = np.array(label).astype(np.float64)
-    # testing_set = np.array(testing_set).astype(np.float64)
-
-    # random forest training and classifying
-    # clf = RF(random_state=0)
-    # clf.fit(training_set, label)
-    # rf_predict = clf.predict(testing_set)
-    # print("random forest prediction: ")
-    # print(rf_predict)
-
-    # SVM training and classifying
-    # support_vm = svm.SVC(kernel='linear')  # Linear Kernel
-    # support_vm.fit(training_set, label)
-    # svm_predict = support_vm.predict(testing_set)
-    # print("SVM prediction: ")
-    # print(svm_predict)
-
-    # From president of GEOS --------------------------------------------
-
-
-    # construct later
-    # ##evaluate the classification
-    # eval.overall_accuracy(svm_cluster_output)
-    # eval.mean_per_class_accuracy(svm_cluster_output)
-    # eval.confusion_matrix(svm_cluster_output)
-    # eval.overall_accuracy(rf_cluster_output)
-    # eval.mean_per_class_accuracy(rf_cluster_output)
-    # eval.confusion_matrix(rf_cluster_output)
-    #
-    # ##to go from the objects back to the points.
-    # svm_point_output = fh.from_object2point(object_size, svm_cluster_output)
-    # rf_point_output = fh.from_object2point(object_size, rf_cluster_output)
-
-    # ## to write the files
-    # fh.file_write(all_x, all_y, all_z, svm_point_output, svm_string)
-    # fh.file_write(all_x, all_y, all_z, rf_point_output, rf_string)
