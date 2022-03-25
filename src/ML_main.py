@@ -167,11 +167,11 @@ if __name__ == '__main__':
    dataset = np.loadtxt(dataset_file)
    label = np.loadtxt(label_file)
     
-   selected_dataset_file = path + r"\dataset.txt" 
-   selected_label_file = path + r"\label.txt" 
+   selected_dataset_file = path + r"\dataset_selected.txt" 
+   selected_label_file = path + r"\label_selected.txt" 
    we_selected_dataset = np.loadtxt(selected_dataset_file)
    we_selected_label = np.loadtxt(selected_label_file)
-    
+   
 
    # load dataset with labels
    both_file = path + r"\both.txt" 
