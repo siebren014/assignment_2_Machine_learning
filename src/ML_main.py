@@ -90,9 +90,9 @@ def ml_RF(dataset, label):
     
     # overall accuracy and mean accuracy
     oa=e.OA(Confusion_matrix_rf)
-    print({}{}.format("overall accuracy of rf: ",oa))
+    print("{}{}".format("overall accuracy of rf: ",oa))
     ma=e.mA(Confusion_matrix_rf)
-    print({}{}.format("mean accuracy of rf: ",ma))
+    print("{}{}".format("mean accuracy of rf: ",ma))
     
     print("feature importances: ")
     print(clf_rf.feature_importances_) # maybe helpful to select features
@@ -166,6 +166,12 @@ if __name__ == '__main__':
    label_file = path + r"\label.txt" 
    dataset = np.loadtxt(dataset_file)
    label = np.loadtxt(label_file)
+    
+   selected_dataset_file = path + r"\dataset.txt" 
+   selected_label_file = path + r"\label.txt" 
+   we_selected_dataset = np.loadtxt(selected_dataset_file)
+   we_selected_label = np.loadtxt(selected_label_file)
+    
 
    # load dataset with labels
    both_file = path + r"\both.txt" 
@@ -183,7 +189,7 @@ if __name__ == '__main__':
    # PCA analysis
    selected_dataset = pca_analysis(dataset)
 
-   print("SVM and Random Forest for dataset with 3 selected attributes: ")
+   print("SVM and Random Forest for dataset with PCA selected attributes: ")
    print()
 
    # SVM
@@ -192,6 +198,14 @@ if __name__ == '__main__':
    # RF
    ml_RF(selected_dataset, label)
 
+   print("SVM and Random Forest for dataset with 3 selected attributes: ")
+   print()
+
+   # SVM
+   ml_svm(we_selected_dataset, we_selected_label)
+
+   # RF
+   ml_RF(we_selected_dataset, we_selected_label)
    # plot dataset with 3 selected attributes
    # plot_dataset(selected_dataset) # uncomment this to plot the dataset with 3 attributes in 3D space
 
